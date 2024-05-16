@@ -13,7 +13,10 @@ All'interno della piattaforma, avrai un profilo personalizzato e accesso a una s
 
 <!-- Idee -->
 
-Link amazon che ti riporta a dei lassativi ,
+Link amazon che ti riporta a dei lassativi
+Achievment (hai cliccato ..... congratulazioni)
+Meme del giorno
+Frase del giorno
 
 <!-- Cose da fare -->
 
