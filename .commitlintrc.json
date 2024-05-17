@@ -1,0 +1,9 @@
+{
+  "extends": ["@commitlint/config-conventional"],
+  "rules": {
+    "header-max-length": [2, "always", 100],
+    "type-enum": [2, "always", ["chore", "docs", "feat", "fix", "refactor"]],
+    "scope-case": [2, "always", "lower-case"],
+    "scope-enum": [2, "always", ["html", "css", "js", "models", "controllers", "app"]]
+  }
+}
