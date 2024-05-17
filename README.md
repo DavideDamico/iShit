@@ -1,3 +1,5 @@
+<!-- @format -->
+
 # iShit
 
 iShit è una piattaforma dove potrai intrattenerti durante l'esecuzione di uno dei bisogni primari dell'umanità.
@@ -19,11 +21,15 @@ graph TD;
     C --> K[Panoramica settimanale]
     C --> L[Panoramica mensile]
     C --> M[Panoramica annua]
-   ```
+```
 
 ## Account personale
 
 In iShit potrai creare un profilo personalizzabile ed avere interazioni con altri utenti della piattaforma!
+
+## Achievment
+
+Nella piattaforma avrai la possibiltà di ricevere premi e titoli che ti distingueranno dalla massa.
 
 ## Conteggio
 
