@@ -2,7 +2,7 @@
 
 class ModelUser {
   constructor(username, email, password) {
-    this.id = this.users.length + 1;
+    this.id = Math.random();
     this.username = username;
     this.email = email;
     this.password = this.encryptPassword(password);
@@ -10,3 +10,5 @@ class ModelUser {
 
   encryptPassword(password) {}
 }
+
+module.exports = ModelUser;
