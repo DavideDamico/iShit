@@ -1,94 +1,73 @@
-/** @format */
-const loginButton = document.getElementById('login');
-const registerButton = document.getElementById('register');
-const shitButton = document.getElementById('shitting-btn');
-const count = document.getElementById('shit-count');
+const ControllerUsers = require('./src/controllers/ControllerUsers');
+const ControllerFeedbacks = require('./src/controllers/ControllerFeedbacks');
+const ControllerShitCounters = require('./src/controllers/ControllerShitCounters');
+const ControllerMemes = require('./src/controllers/ControllerMemes');
+const ControllerQuestions = require('./src/controllers/ControllerQuestions');
+const ControllerFacts = require('./src/controllers/ControllerFacts');
 
-class Users {
-  constructor() {
-    this.users = [];
-  }
+class App {
+    #users = new ControllerUsers();
+    #feedbacks = new ControllerFeedbacks();
+    #shitCounters = new ControllerShitCounters();
+    #memes = new ControllerMemes();
+    #authenticatedUser = null;
+    #questions = new ControllerQuestions();
+    #facts = new ControllerFacts();
 
-  addUser(username, email, password) {
-    const user = {
-      id: this.users.length + 1,
-      username,
-      email,
-      password: this.encryptPassword(password),
-    };
-    this.users.push(user);
-  }
+    register(username, email, password) {
+        return this.#users.addUser(username, email, password);
+    }
 
-  encryptPassword(password) {
-    // Implementa qui la logica di crittografia della password
-    return password;
-  }
+    login(username, password) {
+        this.#authenticatedUser = this.#users.getUser(username, password);
+        return this.#authenticatedUser;
+    }
+
+    logout() {
+        this.#authenticatedUser = null;
+    }
+
+    getAuthenticatedUser() {
+        return this.#authenticatedUser;
+    }
+
+    addFeedback(message, rating) {
+        return this.#feedbacks.create(message, rating);
+    }
+
+    getFeedback(id) {
+        return this.#feedbacks.read(id);
+    }
+
+    addShitCounter() {
+        return this.#shitCounters.create();
+    }
+
+    addQuestion(question, answer) {
+        return this.#questions.create(question, answer);
+    }
+
+    getQuestion(id) {
+        return this.#questions.read(id);
+    }
+
+    addMeme(title, url) {
+        return this.#memes.create(title, url);
+    }
+
+    getMeme(id) {
+        return this.#memes.read(id);
+    }
+
+    addFact(title, description) {
+        return this.#facts.create(title, description);
+    }
+
+    getFact(id) {
+        return this.#facts.read(id);
+    }
 }
 
-class Feedbacks {
-  constructor() {
-    this.id = null;
-    this.username = null;
-    this.message = null;
-    this.rating = null;
-  }
-}
+const app = new App();
 
-class ShitCounter {
-  constructor() {
-    this.id = null;
-    this.username = null;
-    this.counter = null;
-    this.time = new Date().toLocaleTimeString();
-    this.date = new Date().toLocaleDateString();
-  }
-}
-
-// Aumenta il contatore di 1 al click del bottone
-const userShit = new ShitCounter();
-
-function incrementShit(counterDisplay) {
-  userShit.counter++;
-  counterDisplay = userShit.counter;
-}
-
-//Login account
-function login() {
-  const username = document.getElementById('username').value;
-
-  const password = document.getElementById('password').value;
-  const user = users.find(user => user.username === username);
-  if (user && user.password === password) {
-    window.location.href = 'user-home.html';
-  } else {
-    alert('Dati errati');
-  }
-}
-
-// Register account
-function register() {
-  const username = document.getElementById('username').value;
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  const user = users.find(user => user.username === username || user.email === email);
-  if (!user) {
-    users.push({
-      username,
-      email,
-      password,
-    });
-    console.log('Registrazione avvenuta con successo');
-  }
-}
-
-addEventListener('load', () => {
-  loginButton.addEventListener('click', login);
-  registerButton.addEventListener('click', register);
-});
-
-addEventListener('load', () => {
-  shitButton.addEventListener('click', () => {
-    incrementShit();
-    count.innerHTML = users[0].shit.count;
-  });
-});
+module.exports = App;
