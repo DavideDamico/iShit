@@ -8,7 +8,9 @@ class ModelUser {
     this.password = this.encryptPassword(password);
   }
 
-  encryptPassword(password) {}
+  encryptPassword(password) {
+    return password;
+  }
 }
 
 module.exports = ModelUser;

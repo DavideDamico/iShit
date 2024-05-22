@@ -1,3 +1,5 @@
+/** @format */
+
 const ControllerUsers = require('./src/controllers/ControllerUsers');
 const ControllerFeedbacks = require('./src/controllers/ControllerFeedbacks');
 const ControllerShitCounters = require('./src/controllers/ControllerShitCounters');
@@ -6,66 +8,70 @@ const ControllerQuestions = require('./src/controllers/ControllerQuestions');
 const ControllerFacts = require('./src/controllers/ControllerFacts');
 
 class App {
-    #users = new ControllerUsers();
-    #feedbacks = new ControllerFeedbacks();
-    #shitCounters = new ControllerShitCounters();
-    #memes = new ControllerMemes();
-    #authenticatedUser = null;
-    #questions = new ControllerQuestions();
-    #facts = new ControllerFacts();
+  #users = new ControllerUsers();
+  #feedbacks = new ControllerFeedbacks();
+  #shitCounters = new ControllerShitCounters();
+  #memes = new ControllerMemes();
+  #session = null;
+  #questions = new ControllerQuestions();
+  #facts = new ControllerFacts();
 
-    register(username, email, password) {
-        return this.#users.addUser(username, email, password);
-    }
+  #userShits = [];
 
-    login(username, password) {
-        this.#authenticatedUser = this.#users.getUser(username, password);
-        return this.#authenticatedUser;
-    }
+  register(username, email, password) {
+    if (!!this.#session) return console.log('You are already logged in!');
+    else return this.#users.addUser(username, email, password);
+  }
 
-    logout() {
-        this.#authenticatedUser = null;
+  login(username, password) {
+    if (!!this.#session) {
+      return this.#session;
+    } else {
+      this.#session = this.#users.getUser(username, password);
+      return this.#session;
     }
+  }
 
-    getAuthenticatedUser() {
-        return this.#authenticatedUser;
-    }
+  logout() {
+    if (!!this.#session) this.#session = null;
+    else console.log('You must be logged in!');
+  }
 
-    addFeedback(message, rating) {
-        return this.#feedbacks.create(message, rating);
-    }
+  addFeedback(message, rating) {
+    if (!this.#session) return console.log('You must be logged in!');
+    else return this.#feedbacks.create(message, rating);
+  }
 
-    getFeedback(id) {
-        return this.#feedbacks.read(id);
-    }
+  addShitCounter() {
+    if (!this.#session) return console.log('You must be logged in!');
+    else return this.#shitCounters.create();
+  }
 
-    addShitCounter() {
-        return this.#shitCounters.create();
+  increaseShitCounter() {
+    if (!this.#session) return console.log('You must be logged in!');
+    else {
+      const newShitCounter = this.#shitCounters.create();
+      this.#userShits.push({
+        id: Math.random(),
+        userId: this.#session.id,
+        shitCounterId: newShitCounter.id,
+      });
     }
+  }
 
-    addQuestion(question, answer) {
-        return this.#questions.create(question, answer);
-    }
+  addQuestion(question, answer) {
+    return this.#questions.create(question, answer);
+  }
 
-    getQuestion(id) {
-        return this.#questions.read(id);
-    }
+  getMeme() {
+    if (!this.#session) return console.log('You must be logged in!');
+    else return this.#memes.getRandomMeme();
+  }
 
-    addMeme(title, url) {
-        return this.#memes.create(title, url);
-    }
-
-    getMeme(id) {
-        return this.#memes.read(id);
-    }
-
-    addFact(title, description) {
-        return this.#facts.create(title, description);
-    }
-
-    getFact(id) {
-        return this.#facts.read(id);
-    }
+  getFact() {
+    if (!this.#session) return console.log('You must be logged in!');
+    else return this.#facts.randomFact();
+  }
 }
 
 const app = new App();
