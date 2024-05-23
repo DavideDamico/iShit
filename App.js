@@ -2,7 +2,7 @@
 
 const ControllerUsers = require('./src/controllers/ControllerUsers');
 const ControllerFeedbacks = require('./src/controllers/ControllerFeedbacks');
-const ControllerShitCounters = require('./src/controllers/ControllerShitCounters');
+const ControllerShits = require('./src/controllers/ControllerShits');
 const ControllerMemes = require('./src/controllers/ControllerMemes');
 const ControllerQuestions = require('./src/controllers/ControllerQuestions');
 const ControllerFacts = require('./src/controllers/ControllerFacts');
@@ -10,13 +10,11 @@ const ControllerFacts = require('./src/controllers/ControllerFacts');
 class App {
   #users = new ControllerUsers();
   #feedbacks = new ControllerFeedbacks();
-  #shitCounters = new ControllerShitCounters();
+  #controllerShits = new ControllerShits();
   #memes = new ControllerMemes();
   #session = null;
   #questions = new ControllerQuestions();
   #facts = new ControllerFacts();
-
-  #userShits = [];
 
   register(username, email, password) {
     if (!!this.#session) return console.log('You are already logged in!');
@@ -42,21 +40,14 @@ class App {
     else return this.#feedbacks.create(message, rating);
   }
 
-  addShitCounter() {
+  addShit() {
     if (!this.#session) return console.log('You must be logged in!');
-    else return this.#shitCounters.create();
+    else this.#controllerShits.create(this.#session.id);
   }
 
-  increaseShitCounter() {
+  getUserShit() {
     if (!this.#session) return console.log('You must be logged in!');
-    else {
-      const newShitCounter = this.#shitCounters.create();
-      this.#userShits.push({
-        id: Math.random(),
-        userId: this.#session.id,
-        shitCounterId: newShitCounter.id,
-      });
-    }
+    else return this.#controllerShits.getUserShit(this.#session.id);
   }
 
   addQuestion(question, answer) {
