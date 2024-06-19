@@ -43,6 +43,10 @@ Avrai la possibilità di navigare e scegliere un meme che descriva esattamente l
 
 Ti daremo la possibilità di condividere pensieri o riflessioni profonde scaturite dalla tua sessione ed avere dei riscontri dagli altri utenti!
 
+## Fatto del giorno
+
+Ogni giorno avrai un fatto divertente inerente a questo mondo!
+
 ## Attività ricreative
 
 Una volta premuto sul bottone iniziale, avrai accesso ad una serie di attività per passare il tempo tra uno sforzo e l'altro!
