@@ -62,3 +62,21 @@ Avrai anche la possibilità di navigare nello store affiliato, dove troverai pro
 ## Quiz
 
 Potrai distrarre la tua mente dai grandi sforzi leggendo e rispondendo a delle domande di cultura generale, ma anche stimolanti!
+
+## 📜 Disclaimer Legale
+
+iShit è un progetto originale ideato e sviluppato da Andrea Marchese e Davide D'Amico, concepito con finalità umoristiche e ricreative. Ogni contenuto, funzionalità e descrizione presenti in questa repository sono da considerarsi protetti dalla normativa sul diritto d'autore, ove applicabile.
+
+⚠️ Qualsiasi tentativo di copia, distribuzione non autorizzata, o utilizzo commerciale dell'idea o del codice sorgente, senza consenso scritto dell'autore, sarà considerato una violazione dei diritti intellettuali.
+
+La repository ha data certa tramite GitHub e rappresenta una prova documentata della paternità del progetto.
+
+---
+
+## 📌 Nota Etica
+
+Il progetto è sviluppato per scopi di intrattenimento e non intende offendere, denigrare o risultare inappropriato. Ogni contenuto presente è da intendersi in chiave satirica e ironica.
+
+Per contatti o collaborazioni, si prega di aprire un'issue o inviare una mail a yocopk@gmail.com.
+
+
